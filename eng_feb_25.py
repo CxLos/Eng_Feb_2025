@@ -93,7 +93,7 @@ df = df[df['Date of Activity'].dt.month == 2]
 
 # Total number of engagements:
 total_engagements = len(df)
-print('Total Engagements:', total_engagements)
+# print('Total Engagements:', total_engagements)
 
 # -------------------------- Engagement Hours -------------------------- #
 
@@ -147,25 +147,42 @@ status_pie = px.pie(
 # ----------------------------- Admin Activity --------------------------- #
 
 categories = [
-    "(4) Outreach 1 to 1 Strategy Meetings",
-    "BMHC Quarterly Team Meeting",
-    "BMHC Team",
-    "Community First Village Huddle",
-    "Key Leaders Huddle",
-    "National Kidney Foundation Strategy Meeting (Know Your Numbers Campaign Program)",
-    "Outreach Team Meeting",
-    "St. David's + Kazi 88.7FM Strategic Partnership Meeting & Strategy Planning Discussion/Activities",
-    "Travis County Judge Andy Brown & Travis County Commissioner Ann Howard BMHC Tour & Discussion",
-    "Record Keeping & Documentation",
-    "HR Support",
-    "Office Management",
-    "2025 Calendar Year Outreach Preparation & Strategic Planning Activities",
-    "Gudlife 2025 Strategic Planning Session",
-    "Research & Planning",
-    "Financial & Budgetary Management",
-    "Compliance & Policy Enforcement",
-    "IT",
-    "Events Planning Meeting",
+    '100 Black Men of Austin Quarterly Partnership Review (QPR)',
+    'Any Baby Can Tour & Partnership Meeting',
+    'BMHC + Breakthrough of Central Texas Partnership Discussion',
+    'BMHC + Community First Village Neighborhood Care Team Planning Meeting',
+    'BMHC + Community First Village Onsite Outreach Strategy Huddle',
+    'BMHC + Community First Village Onsite Outreach Strategy Planning Huddle',
+    'BMHC + Gudlife Outreach Strategy Huddle',
+    'BMHC + Gudlife Strategy Huddle',
+    'BMHC + KAZI Basketball Tournament',
+    'BMHC Gudlife Meeting',
+    'BMHC Pflugerville Asset Mapping Activities',
+    'BMHC Tour (Austin Mayor Kirk Watson & Austin City Council Member District 4 "Chito" Vela)',
+    'Biweekly PSH staffing with ECHO',
+    'Child Inc Travis County HeadStart Program (Fatherhood Program Event)',
+    'Communication & Correspondence',
+    'Community First Village Onsite Outreach',
+    'Community First Village Outreach Strategy Huddle',
+    'Compliance & Policy Enforcement',
+    'Downtown Austin Community Court Onsite Outreach',
+    'End of Week 1 to 1 Performance Review',
+    'Financial & Budgetary Management',
+    'HR Support',
+    'Housing Authority of Travis County (Self-Care Day) Outreach Event',
+    'Housing Authority of Travis County Quarterly Partnership Review (QPR)',
+    'Impact Forms Follow Up Meeting',
+    'Implementation Studios Planning & Strategy Meeting',
+    'Meeting with Cameron',
+    'Onboarding',
+    'Outreach & Navigation Leads 1 to 1 Strategy Meeting',
+    'Outreach 1 to 1 Strategy Meetings',
+    'Outreach Onboarding (Jordan Calbert)',
+    'PSH Audit for ECHO',
+    'PSH file updates and case staffing',
+    'Record Keeping & Documentation',
+    'Research & Planning',
+    'PSH support call with Dr Wallace'
 ]
 
 df['BMHC Administrative Activity:'] = (
@@ -184,7 +201,40 @@ df['BMHC Administrative Activity:'] = (
             "St. David's + Kazi 88.7FM Strategic Partnership Meeting & Strategy Planning Discussion/Activities": "Communication & Correspondence",
             'Travis County Judge Andy Brown & Travis County Commissioner Ann Howard BMHC Tour & Discussion': "Communication & Correspondence",
 
+            # Outreach & Partnerships
+            '100 Black Men of Austin Quarterly Partnership Review (QPR)': "Outreach & Partnerships",
+            'Any Baby Can Tour & Partnership Meeting': "Outreach & Partnerships",
+            'BMHC + Breakthrough of Central Texas Partnership Discussion': "Outreach & Partnerships",
+            'BMHC + Community First Village Neighborhood Care Team Planning Meeting': "Outreach & Partnerships",
+            'BMHC + Community First Village Onsite Outreach Strategy Huddle': "Outreach & Partnerships",
+            'BMHC + Community First Village Onsite Outreach Strategy Planning Huddle': "Outreach & Partnerships",
+            'BMHC + Gudlife Outreach Strategy Huddle': "Outreach & Partnerships",
+            'BMHC + Gudlife Strategy Huddle': "Outreach & Partnerships",
+            'BMHC Gudlife Meeting': "Outreach & Partnerships",
+            'BMHC Pflugerville Asset Mapping Activities': "Outreach & Partnerships",
+            'BMHC Tour (Austin Mayor Kirk Watson & Austin City Council Member District 4 "Chito" Vela)': "Outreach & Partnerships",
+            'Housing Authority of Travis County (Self-Care Day) Outreach Event': "Outreach & Partnerships",
+            'Housing Authority of Travis County Quarterly Partnership Review (QPR)': "Outreach & Partnerships",
+            'Implementation Studios Planning & Strategy Meeting': "Outreach & Partnerships",
+            'Meeting with Cameron': "Outreach & Partnerships",
+
+            # Community Engagement & Events
+            'BMHC + KAZI Basketball Tournament': "Community Engagement & Events",
+            'Child Inc Travis County HeadStart Program (Fatherhood Program Event)': "Community Engagement & Events",
+            'Community First Village Onsite Outreach': "Community Engagement & Events",
+            'Downtown Austin Community Court Onsite Outreach': "Community Engagement & Events",
+
+            # Performance & Management
+            'End of Week 1 to 1 Performance Review': "Performance & Management",
+            'Onboarding': "Performance & Management",
+            'Outreach & Navigation Leads 1 to 1 Strategy Meeting': "Performance & Management",
+            'Outreach 1 to 1 Strategy Meetings': "Performance & Management",
+            'Outreach Onboarding (Jordan Calbert)': "Performance & Management",
+
             # Record Keeping & Documentation
+            'Impact Forms Follow Up Meeting': "Record Keeping & Documentation",
+            'PSH Audit for ECHO': "Record Keeping & Documentation",
+            'PSH file updates and case staffing': "Record Keeping & Documentation",
             'Record Keeping & Documentation': "Record Keeping & Documentation",
 
             # HR Support
@@ -195,6 +245,7 @@ df['BMHC Administrative Activity:'] = (
             '2025 Calendar Year Outreach Preparation & Strategic Planning Activities': "Research & Planning",
             'Gudlife 2025 Strategic Planning Session': "Research & Planning",
             'Research & Planning': "Research & Planning",
+            'Events Planning Meeting': "Research & Planning",
 
             # Financial & Budgetary Management
             'Financial & Budgetary Management': "Financial & Budgetary Management",
@@ -205,11 +256,14 @@ df['BMHC Administrative Activity:'] = (
             # IT
             'IT': "IT",
 
-            # Everything else (fallback category)
-            'Events Planning Meeting': "Research & Planning",
+            # PSH Support
+            'Biweekly PSH staffing with ECHO': "PSH Support",
+            'PSH support call with Dr Wallace': "PSH Support",
         }
     )
 )
+
+
 
 # Group by 'BMHC Administrative Activity:' dataframe:
 admin_activity = df.groupby('BMHC Administrative Activity:').size().reset_index(name='Count')
@@ -291,6 +345,7 @@ admin_pie=px.pie(
         color='black'
     )
 ).update_traces(
+    rotation=130,
     textinfo='value+percent',
     # textinfo='none',
     hovertemplate='<b>%{label}</b>: %{value}<extra></extra>'
@@ -375,6 +430,7 @@ care_pie=px.pie(
         color='black'
     )
 ).update_traces(
+    rotation=120,
     textinfo='value+percent',
     # textinfo='none',
     hovertemplate='<b>%{label}</b>: %{value}<extra></extra>'
@@ -468,34 +524,41 @@ community_pie=px.pie(
         color='black'
     )
 ).update_traces(
+    rotation=60,
     textinfo='value+percent',
     hovertemplate='<b>%{label}</b>: %{value}<extra></extra>'
 )
 
 # ------------------------ Person Submitting Form -------------------- #
 
-#  Duplicate values in 'Person submitting this form:' column:
+#  Unique values:
 
-# 0           Antonio Montggery       1
-# 1           Antonio Montgomery      1
-# 2              Cameron Morgan       1
-# 3             Kiounis Williams      6
-# 4            Kiounis Williams       3
-# 5             Larry Wallace Jr     31
+# 'Antonio Montgomery'
+#  'Cameron Morgan' 
+#  'Dominique Street' 
+#  'Jordan Calbert'
+#  'KAZI 88.7 FM Radio Interview & Preparation'
+#  'Kim Holiday'
+#  'Kiounis Williams' 
+#  'Larry Wallace Jr.'
+#  'Sonya Hosey' 
+#  'Toya Craney'
 
 df['Person submitting this form:'] = (
     df['Person submitting this form:']
     .str.strip()
     .replace(
         {"Larry Wallace Jr": "Larry Wallace Jr.", 
-        "Antonio Montggery": "Antonio Montgomery"}
+        "Antonio Montggery": "Antonio Montgomery",
+        "KAZI 88.7 FM Radio Interview & Preparation" : "Unknown"}
     )
 )
 
 # df['Person submitting this form:'] = df['Person submitting this form:'].replace("Kiounis Williams ", "Kiounis Williams")
 
 df_person = df.groupby('Person submitting this form:').size().reset_index(name='Count')
-# print(person_group.value_counts())
+# print(df_person.value_counts())
+# print(df_person["Person submitting this form:"].unique())
 
 person_bar=px.bar(
     df_person,
@@ -504,8 +567,8 @@ person_bar=px.bar(
     color='Person submitting this form:',
     text='Count',
 ).update_layout(
-    height=460, 
-    width=780,
+    height=650, 
+    width=840,
     title=dict(
         text='People Submitting Forms',
         x=0.5, 
@@ -562,6 +625,7 @@ person_pie=px.pie(
     names="Person submitting this form:",
     values='Count'  # Specify the values parameter
 ).update_layout(
+    height=650, 
     title='Ratio of People Filling Out Forms',
     title_x=0.5,
     font=dict(
@@ -570,7 +634,7 @@ person_pie=px.pie(
         color='black'
     )
 ).update_traces(
-    rotation=0,
+    rotation=70,
     textposition='auto',
     textinfo='value+percent',
     hovertemplate='<b>%{label} Status</b>: %{value}<extra></extra>',
