@@ -348,7 +348,11 @@ admin_pie=px.pie(
     rotation=130,
     textinfo='value+percent',
     # textinfo='none',
-    hovertemplate='<b>%{label}</b>: %{value}<extra></extra>'
+    hovertemplate='<b>%{label}</b>: %{value}<extra></extra>',
+    pull = [0.1 if v < 5 else 0.01 + (v / max(admin_activity["Count"]) * 0.05) for v in admin_activity["Count"]]
+
+    # pull=[0.15 if v < 5 else 0.04 for v in admin_activity["Count"]]  # Pull out small slices more, and others slightly
+    #  pull=[0.1 if v < 5 else 0 for v in admin_activity["Count"]]  # Pull out small slices more, no pull for large ones
 )
 
 # -------------------------- Care Network Activity ----------------------- #
@@ -433,7 +437,8 @@ care_pie=px.pie(
     rotation=120,
     textinfo='value+percent',
     # textinfo='none',
-    hovertemplate='<b>%{label}</b>: %{value}<extra></extra>'
+    hovertemplate='<b>%{label}</b>: %{value}<extra></extra>',
+    pull=[0.15 if v < 5 else 0.04 for v in admin_activity["Count"]]  # Pull out small slices more, and others slightly
 )
 
 # --------------------------Community Outreach Activity ---------------------- #
@@ -526,7 +531,13 @@ community_pie=px.pie(
 ).update_traces(
     rotation=60,
     textinfo='value+percent',
-    hovertemplate='<b>%{label}</b>: %{value}<extra></extra>'
+    hovertemplate='<b>%{label}</b>: %{value}<extra></extra>',
+    # The code is creating a list called `pull` using a list comprehension. For each value `v` in the
+    # "Count" column of the `admin_activity` DataFrame (assuming it's a pandas DataFrame), it assigns
+    # 0.15 to the corresponding element in `pull` if `v` is less than 5, and 0.05 if `v` is greater
+    # than or equal to 5. This code is essentially adjusting the values based on the condition
+    # provided.
+    pull=[0.15 if v < 5 else 0.05 for v in admin_activity["Count"]]  # Pull out small slices more, and others slightly
 )
 
 # ------------------------ Person Submitting Form -------------------- #
@@ -638,6 +649,7 @@ person_pie=px.pie(
     textposition='auto',
     textinfo='value+percent',
     hovertemplate='<b>%{label} Status</b>: %{value}<extra></extra>',
+    pull = [0.1 if v < 5 else 0.01 + (v / max(admin_activity["Count"]) * 0.05) for v in admin_activity["Count"]]
 )
 
 # # ========================== DataFrame Table ========================== #
@@ -1046,7 +1058,7 @@ if __name__ == '__main__':
                 #    False)
 # =================================== Updated Database ================================= #
 
-# updated_path = 'data/bmhc_q4_2024_cleaned.xlsx'
+# updated_path = 'data/eng_feb_2025.xlsx'
 # data_path = os.path.join(script_dir, updated_path)
 # df.to_excel(data_path, index=False)
 # print(f"DataFrame saved to {data_path}")
